@@ -1,250 +1,555 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Valentine Week for Vrushti</title>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Babygirl Vrushti 💕</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-  html,body {
-    margin:0;
-    height:100%;
-    font-family:"Comfortaa",sans-serif;
-    background:radial-gradient(ellipse at bottom,#0d1b2a 0%,#000 100%);
-    color:#fdfdfd;
-    overflow:hidden;
-  }
-  .stars {
-    position:absolute;
-    width:2px;height:2px;
-    background:transparent;
-    box-shadow:
-      2vw 10vh #fff, 20vw 30vh #fff, 40vw 80vh #fff,
-      60vw 50vh #fff, 80vw 20vh #fff, 90vw 70vh #fff;
-    animation: twinkle 6s infinite alternate;
-  }
-  @keyframes twinkle {from {opacity:0.6;} to {opacity:1;}}
-  .card {
-    position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100%;
-    width:100%;
-    text-align:center;
-    padding:20px;
-  }
-  h1 {font-family:"Pacifico";color:#ffd166;margin:0;font-size:2.2em;}
-  .dayLabel {color:#ff9aa2;font-weight:bold;margin:16px 0;font-size:1.4em;}
-  .wishText {
-    font-size:1.1em;
-    line-height:1.6;
-    max-width:800px;
-    white-space:pre-line;
-    margin:0 auto;
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    border-radius:16px;
-    box-shadow:0 8px 30px rgba(255,255,255,0.25);
-  }
-  .gifRow {
-    display:flex;
-    justify-content:center;
-    gap:16px;
-    margin-top:24px;
-    flex-wrap:wrap;
-  }
-  .gifRow img {
-    width:220px;height:auto;border-radius:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
-    animation:float 6s ease-in-out infinite;
-  }
-  @keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-12px);}100%{transform:translateY(0);}}
-  .flower {
-    position:absolute;
-    width:60px;height:120px;
-    pointer-events:none;
-    transform-origin:bottom center;
-  }
-  .stem {
-    position:absolute;
-    bottom:0;left:50%;
-    width:6px;height:0;
-    background:#3a9d23;
-    border-radius:3px;
-    transform:translateX(-50%);
-  }
-  .bloom {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    width:0;height:0;
-    transform:translateX(-50%) scale(0);
-  }
-  .petal {
-    position:absolute;
-    width:24px;height:24px;
-    border-radius:50%;
-    background:#ffd166;
-    box-shadow:0 0 12px rgba(255,209,102,0.8);
-    opacity:0;
-    transform-origin:center;
-  }
-  .firefly {
-    position:absolute;
-    width:6px;height:6px;
-    background:#fff59d;
-    border-radius:50%;
-    box-shadow:0 0 8px #fff59d;
-    opacity:0.8;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a0a23 0%, #1a0033 100%);
+  font-family: 'Arial', sans-serif;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff69b4" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+  position: relative;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6);
+  margin-bottom: 15px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #ffc0cb;
+  text-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
+  margin-bottom: 30px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6); }
+  to { text-shadow: 0 0 30px rgba(255, 105, 180, 1), 0 0 60px rgba(255, 105, 180, 0.8); }
+}
+
+.message {
+  color: #ffc0cb;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gif-container {
+  width: clamp(250px, 40vw, 400px);
+  height: clamp(250px, 40vw, 400px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+  border: 3px solid rgba(255, 105, 180, 0.3);
+}
+
+.gif-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Fireflies */
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffeb3b;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+  animation: float 8s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+  25% { transform: translate(100px, -50px); opacity: 1; }
+  50% { transform: translate(-50px, -100px); opacity: 0.5; }
+  75% { transform: translate(-100px, 50px); opacity: 1; }
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255, 105, 180, 0.6);
+  animation: rise 15s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-100px) translateX(var(--sway)); opacity: 0; }
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 50px;
+  right: 80px;
+  width: 80px;
+  height: 80px;
+  background: #f0e68c;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(240, 230, 140, 0.6);
+  z-index: 1;
+}
+
+/* Grass */
+.grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgba(34, 139, 34, 0.3), transparent);
+  z-index: 1;
+}
+
+/* Rose petals */
+.petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 182, 193, 0.7);
+  border-radius: 50% 0 50% 0;
+  animation: fall 10s infinite linear;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Flower explosion */
+.flower-explosion {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.flower-particle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  animation: explode 3s ease-out forwards;
+}
+
+@keyframes explode {
+  0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(720deg); opacity: 0; }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.95), rgba(219, 112, 147, 0.95));
+  padding: 60px 80px;
+  border-radius: 30px;
+  box-shadow: 0 0 60px rgba(255, 105, 180, 0.8);
+  z-index: 1000;
+  display: none;
+  text-align: center;
+  border: 3px solid rgba(255, 105, 180, 0.5);
+}
+
+.modal.active {
+  display: block;
+  animation: modalAppear 0.5s ease-out;
+}
+
+@keyframes modalAppear {
+  from { transform: translate(-50%, -50%) scale(0); }
+  to { transform: translate(-50%, -50%) scale(1); }
+}
+
+.modal h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.modal .modal-subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #ffe6f0;
+  margin-bottom: 30px;
+}
+
+.modal-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+  transition: all 0.3s ease;
+  display: none;
+}
+
+.modal-btn.visible {
+  display: inline-block;
+}
+
+.modal-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px rgba(255, 105, 180, 1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  z-index: 1001;
+  animation: confettiFall 3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .moon { width: 50px; height: 50px; top: 30px; right: 30px; }
+  .modal { padding: 40px 30px; }
+}
 </style>
 </head>
 <body>
-<div class="stars"></div>
-<div class="card">
-  <h1>Valentine Week for <span id="gfName">Vrushti</span></h1>
-  <div class="dayLabel" id="dayLabel"></div>
-  <div class="wishText" id="wishText"></div>
-  <div class="gifRow" id="gifRow"></div>
+
+<div class="moon"></div>
+<div class="grass"></div>
+
+<div class="content">
+  <h1 id="title">Happy Valentine's Week!</h1>
+  <div class="subtitle" id="subtitle">My Babygirl Vrushti 💕</div>
+  <p class="message" id="message">Loading...</p>
+  <div class="gif-container">
+    <iframe id="gif" src="" allowFullScreen></iframe>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="modal" id="modal">
+  <h2>Vrushti, Will you be my Valentine? 💕</h2>
+  <p class="modal-subtitle">My Babygirl forever? 🥰</p>
+  <button class="modal-btn" id="yesBtn">Yes 💖</button>
 </div>
 
 <script>
-const gfName="Vrushti";
-document.getElementById("gfName").textContent=gfName;
-
-/* GIFs per day */
-const catGifs={
-  "2-7":["https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"],
-  "2-8":["https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"],
-  "2-9":["https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"],
-  "2-10":["https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"],
-  "2-11":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"],
-  "2-12":["https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"],
-  "2-13":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"],
-  "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"]
+// Valentine's Week Data
+const valentineData = {
+  7: {
+    title: "Happy Rose Day!",
+    message: "My dearest Vrushti, my Babygirl, today I gift you a rose as red as my heart beats for you. You're the most beautiful bloom in my garden of dreams, and every petal whispers how much I adore you. Can't wait to see that gorgeous smile that lights up my world! 🌹",
+    gif: "3o7TKMt1VVNkHV2PaE"
+  },
+  8: {
+    title: "Happy Propose Day!",
+    message: "Vrushti, my Babygirl, on this special day I want to tell you that my heart chose you from the very first moment. You make every day magical, every moment precious. Will you be mine today, tomorrow, and forever? You're my everything! 💍",
+    gif: "ICOgUNjpvO0PC"
+  },
+  9: {
+    title: "Happy Chocolate Day!",
+    message: "My sweet Babygirl Vrushti, life with you is sweeter than the finest chocolate in the world! You melt my heart with your sweetness every single day. Here's to all our sweet moments together. You're my favorite treat, now and always! 🍫",
+    gif: "mlvseq9yvZhba"
+  },
+  10: {
+    title: "Happy Teddy Day!",
+    message: "Vrushti, my precious Babygirl, just like this cuddly teddy, I want to hold you close and never let go. You're my comfort, my warmth, my safe place, my everything. Let's snuggle through this beautiful life together, hand in hand! 🧸",
+    gif: "H4DjXQXamtTiIuyvnd"
+  },
+  11: {
+    title: "Happy Promise Day!",
+    message: "My Babygirl Vrushti, I promise to love you in sunshine and storms, to cherish every precious moment with you. My heart makes this sacred vow: to be yours completely, to protect your smile, to adore you today, tomorrow, and always. You have my forever! 💫",
+    gif: "Z9OGuQyrfHAE8"
+  },
+  12: {
+    title: "Happy Hug Day!",
+    message: "Vrushti, my Babygirl, in your arms I found my home, my peace, my happiness. Your hugs are my safe haven where all worries disappear. Let me hold you close forever and fill your life with endless love and warmth. You're my forever embrace! 🤗",
+    gif: "3o6nUMRm46ceoDRAd2"
+  },
+  13: {
+    title: "Happy Kiss Day!",
+    message: "My beautiful Babygirl Vrushti, your kiss is pure magic that sets my soul on fire! Every kiss from you feels like the first time, making my heart race. I'm completely addicted to your love, your touch, your everything. Kiss me forever, my love! 💋",
+    gif: "MDJ9IbxxvDUQM"
+  },
+  14: {
+    title: "Happy Valentine's Day!",
+    message: "Vrushti, my precious Babygirl, today and every single day, you are my Valentine, my soulmate, my best friend, my greatest love! Thank you for making my life the most beautiful love story ever written. I love you more than words can express, endlessly and completely! ❤️",
+    gif: "11StaZ9Lj74oCY"
+  }
 };
 
-/* Longer, cute notes */
-const wishes={
- "2-7":`Happy Flower Day ${gfName}! 🌼
-Like these glowing blossoms, your smile lights up the night sky.
-Every petal reminds me of the warmth you bring,
-and every glow is a promise of endless joy together.`,
- "2-8":`Propose Day 💍
-${gfName}, under the stars I ask again:
-Will you let me be the one who walks beside you,
-shares laughter under firefly light,
-and builds a thousand cozy memories with you?`,
- "2-9":`Chocolate Day 🍫
-Sweet ${gfName}, you are sweeter than midnight cocoa,
-and softer than the creamiest truffle.
-Every moment with you is a treat,
-and I want to savor this sweetness for a lifetime.`,
- "2-10":`Teddy Day 🧸
-Cuddly ${gfName}, imagine a teddy that carries all my hugs,
-whispers silly stories, and keeps you warm at night.
-That teddy is me, always ready to comfort you
-and make you smile under the glowing stars.`,
- "2-11":`Promise Day 🤝
-Beloved ${gfName}, I promise to listen when you need to talk,
-to cheer when you shine, and to stand steady when storms arrive.
-This promise is not just words, but my heart’s vow —
-forever and always, glowing like fireflies in the dark.`,
- "2-12":`Hug Day 🤗
-Sweetheart ${gfName}, here is a hug that travels through the night:
-warm, gentle, and endless.
-Wrap it around you whenever you miss me,
-and know that I am holding you close in every quiet moment.`,
- "2-13":`Kiss Day 😘
-Darling ${gfName}, a tiny kiss for your forehead,
-a playful peck for your cheek,
-and a promise of a thousand more.
-Let this kiss be a spark that lights up your sweetest dreams tonight.`,
- "2-14":`Happy Valentine's Day ❤️
-My dearest ${gfName}, today and every day I celebrate you.
-You make my heart skip, my laughter brighter, and my world magical.
-Will you be my forever Valentine, my favorite hello,
-and my hardest goodbye under the midnight sky?`
-};
+// Get current date
+const now = new Date();
+const currentDay = now.getDate();
+const currentMonth = now.getMonth() + 1; // 0-indexed
 
-function mdKey(d){return (d.getMonth()+1)+"-"+d.getDate();}
-const today=new Date();
-const key=mdKey(today);
-document.getElementById("dayLabel").textContent=wishes[key]?wishes[key].split(" ")[0]+" Day":"Sweet Day";
-document.getElementById("wishText").textContent=wishes[key]||`Hello ${gfName}, every day with you is special 💖`;
+// Determine which day to show
+let dayToShow = 14; // Default to Valentine's Day
+if (currentMonth === 2 && currentDay >= 7 && currentDay <= 14) {
+  dayToShow = currentDay;
+}
 
-/* Show GIFs */
-const gifRow=document.getElementById("gifRow");
-(catGifs[key]||catGifs["2-7"]).forEach(url=>{
-  const img=document.createElement("img");
-  img.src=url;img.alt="cat couple gif";
-  gifRow.appendChild(img);
+// Set content
+const data = valentineData[dayToShow];
+document.getElementById('title').textContent = data.title;
+document.getElementById('message').textContent = data.message;
+document.getElementById('gif').src = `https://giphy.com/embed/${data.gif}`;
+
+// Create stars
+for (let i = 0; i < 100; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.width = Math.random() * 3 + 'px';
+  star.style.height = star.style.width;
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 50 + '%';
+  star.style.animationDelay = Math.random() * 3 + 's';
+  star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+  document.body.appendChild(star);
+}
+
+// Create fireflies
+for (let i = 0; i < 30; i++) {
+  const firefly = document.createElement('div');
+  firefly.className = 'firefly';
+  firefly.style.left = Math.random() * 100 + '%';
+  firefly.style.top = Math.random() * 100 + '%';
+  firefly.style.animationDelay = Math.random() * 8 + 's';
+  firefly.style.animationDuration = (Math.random() * 5 + 5) + 's';
+  document.body.appendChild(firefly);
+}
+
+// Create floating hearts
+for (let i = 0; i < 15; i++) {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '💕';
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.setProperty('--sway', (Math.random() * 200 - 100) + 'px');
+  heart.style.animationDelay = Math.random() * 15 + 's';
+  heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+  document.body.appendChild(heart);
+}
+
+// Create rose petals
+for (let i = 0; i < 10; i++) {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  petal.style.left = Math.random() * 100 + '%';
+  petal.style.animationDelay = Math.random() * 10 + 's';
+  petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
+  document.body.appendChild(petal);
+}
+
+// Flower SVG template
+const flowerSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(0 50 50)"/>
+  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(72 50 50)"/>
+  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(144 50 50)"/>
+  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(216 50 50)"/>
+  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(288 50 50)"/>
+  <circle cx="50" cy="50" r="8" fill="#ffa500"/>
+  <line x1="50" y1="50" x2="50" y2="90" stroke="#228b22" stroke-width="3"/>
+  <ellipse cx="40" cy="70" rx="8" ry="5" fill="#228b22" transform="rotate(-30 40 70)"/>
+  <ellipse cx="60" cy="75" rx="8" ry="5" fill="#228b22" transform="rotate(30 60 75)"/>
+</svg>`;
+
+// Click explosion effect
+document.addEventListener('click', (e) => {
+  const container = document.createElement('div');
+  container.className = 'flower-explosion';
+  container.style.left = e.clientX + 'px';
+  container.style.top = e.clientY + 'px';
+  
+  const numFlowers = Math.floor(Math.random() * 6) + 5;
+  
+  for (let i = 0; i < numFlowers; i++) {
+    const flower = document.createElement('div');
+    flower.className = 'flower-particle';
+    flower.innerHTML = flowerSVG;
+    
+    const angle = (Math.PI * 2 * i) / numFlowers;
+    const distance = Math.random() * 100 + 50;
+    const tx = Math.cos(angle) * distance;
+    const ty = Math.sin(angle) * distance;
+    
+    flower.style.setProperty('--tx', tx + 'px');
+    flower.style.setProperty('--ty', ty + 'px');
+    
+    container.appendChild(flower);
+  }
+  
+  document.body.appendChild(container);
+  
+  setTimeout(() => container.remove(), 3000);
 });
 
-/* Flower grow animation on click */
-document.addEventListener("click",e=>{
-  const f=document.createElement("div");
-  f.className="flower";
-  f.style.left=e.clientX+"px";
-  f.style.top=e.clientY+"px";
-  const stem=document.createElement("div");
-  stem.className="stem";
-  const bloom=document.createElement("div");
-  bloom.className="bloom";
-  f.appendChild(stem);
-  f.appendChild(bloom);
-  document.body.appendChild(f);
-
-  stem.animate([{height:"0px"},{height:"60px"}],{duration:600,fill:"forwards"});
-
-  setTimeout(()=>{
-    bloom.style.width="40px";
-    bloom.style.height="40px";
-    bloom.style.borderRadius="50%";
-    bloom.style.background="#ffd166";
-    bloom.style.boxShadow="0 0 15px rgba(255,209,102,0.9)";
-    bloom.style.transform="translateX(-50%) scale(1)";
-
-    // Add petals around bloom
-    for(let i=0;i<6;i++){
-      const petal=document.createElement("div");
-      petal.className="petal";
-      petal.style.left="50%";
-      petal.style.top="50%";
-      petal.style.transform=`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px)`;
-      bloom.appendChild(petal);
-
-      // Animate petals appearing
-      petal.animate([
-        {opacity:0, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(0.5)`},
-        {opacity:1, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(1)`}
-      ], {duration:600, fill:"forwards"});
+// Valentine's Day Modal (Feb 14 only)
+if (dayToShow === 14) {
+  let attempts = 0;
+  const modal = document.getElementById('modal');
+  const overlay = document.getElementById('overlay');
+  const yesBtn = document.getElementById('yesBtn');
+  
+  setTimeout(() => {
+    modal.classList.add('active');
+    overlay.classList.add('active');
+  }, 5000);
+  
+  modal.addEventListener('mousemove', (e) => {
+    if (attempts < 3 && !yesBtn.classList.contains('visible')) {
+      const rect = modal.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Playfully move modal away
+      const offsetX = (Math.random() - 0.5) * 100;
+      const offsetY = (Math.random() - 0.5) * 100;
+      modal.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+      
+      setTimeout(() => {
+        modal.style.transform = 'translate(-50%, -50%)';
+      }, 500);
     }
-
-    // Add fireflies drifting around the bloom
-    for(let j=0;j<4;j++){
-      const firefly=document.createElement("div");
-      firefly.className="firefly";
-      firefly.style.left="50%";
-      firefly.style.top="50%";
-      bloom.appendChild(firefly);
-
-      const dx=(Math.random()*80-40);
-      const dy=(Math.random()*80-40);
-      firefly.animate([
-        {opacity:0, transform:`translate(-50%,-50%) scale(0.5)`},
-        {opacity:1, transform:`translate(${dx}px,${dy}px) scale(1)`},
-        {opacity:0, transform:`translate(${dx*1.2}px,${dy*1.2}px) scale(0.8)`}
-      ],{duration:2500+Math.random()*1000,easing:"ease-out"});
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (attempts < 3 && !yesBtn.classList.contains('visible')) {
+      attempts++;
+      
+      // Hearts explosion
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = '💖';
+        heart.style.position = 'fixed';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.fontSize = '30px';
+        heart.style.zIndex = '1002';
+        heart.style.pointerEvents = 'none';
+        
+        const angle = (Math.PI * 2 * i) / 10;
+        const distance = Math.random() * 100 + 50;
+        
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.style.transition = 'all 1s ease-out';
+          heart.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+          heart.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => heart.remove(), 1100);
+      }
+      
+      if (attempts >= 3) {
+        yesBtn.classList.add('visible');
+      }
     }
-  },600);
-
-  // Remove the flower after a short delay
-  setTimeout(()=>f.remove(),4000);
-});
+  });
+  
+  yesBtn.addEventListener('click', () => {
+    // Confetti explosion
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-10px';
+      confetti.style.background = ['#ff69b4', '#ff1493', '#ff6b9d', '#ffa07a', '#ffb6c1'][Math.floor(Math.random() * 5)];
+      confetti.style.animationDelay = Math.random() * 0.5 + 's';
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 3500);
+    }
+    
+    modal.querySelector('h2').textContent = 'Yay! Forever yours, my Babygirl! 😻';
+    modal.querySelector('.modal-subtitle').textContent = 'I love you endlessly, Vrushti! 💕';
+    yesBtn.style.display = 'none';
+    
+    setTimeout(() => {
+      modal.classList.remove('active');
+      overlay.classList.remove('active');
+    }, 3000);
+  });
+}
 </script>
+
 </body>
 </html>
