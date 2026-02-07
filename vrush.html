@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,14 +180,14 @@ h1 {
 
 .flower-particle {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   animation: explode 3s ease-out forwards;
 }
 
 @keyframes explode {
   0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(720deg); opacity: 0; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1) rotate(720deg); opacity: 0; }
 }
 
 /* Modal */
@@ -306,51 +307,51 @@ h1 {
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="modal">
   <h2>Vrushti, Will you be my Valentine? 💕</h2>
-  <p class="modal-subtitle">My Babygirl forever? 🥰</p>
-  <button class="modal-btn" id="yesBtn">Yes 💖</button>
+  <p class="modal-subtitle">My precious Babygirl? 🥰✨</p>
+  <button class="modal-btn" id="yesBtn">Yes, Forever! 💖</button>
 </div>
 
 <script>
-// Valentine's Week Data
+// Valentine's Week Data - Extra cute messages!
 const valentineData = {
   7: {
     title: "Happy Rose Day!",
-    message: "My dearest Vrushti, my Babygirl, today I gift you a rose as red as my heart beats for you. You're the most beautiful bloom in my garden of dreams, and every petal whispers how much I adore you. Can't wait to see that gorgeous smile that lights up my world! 🌹",
+    message: "My sweetest Vrushti, my precious Babygirl 🌹 You're more beautiful than a thousand roses! Just like this rose blooms for the sun, my heart blooms only for you. Your smile is the sunshine that makes my garden of love grow. I'm so lucky you're mine! 💕✨",
     gif: "3o7TKMt1VVNkHV2PaE"
   },
   8: {
     title: "Happy Propose Day!",
-    message: "Vrushti, my Babygirl, on this special day I want to tell you that my heart chose you from the very first moment. You make every day magical, every moment precious. Will you be mine today, tomorrow, and forever? You're my everything! 💍",
+    message: "Vrushti, my adorable Babygirl 💍 From the moment I met you, I knew you were my forever! You turn ordinary moments into magical memories. Will you hold my hand through every sunrise and sunset? You're my favorite person in the whole universe! 🥰💫",
     gif: "ICOgUNjpvO0PC"
   },
   9: {
     title: "Happy Chocolate Day!",
-    message: "My sweet Babygirl Vrushti, life with you is sweeter than the finest chocolate in the world! You melt my heart with your sweetness every single day. Here's to all our sweet moments together. You're my favorite treat, now and always! 🍫",
+    message: "My sweet sweet Babygirl Vrushti 🍫 You're sweeter than all the chocolates in the world combined! Your love melts my heart like warm chocolate. Every moment with you is a delicious treat. You make life taste so much better, cutie! 💕🍬",
     gif: "mlvseq9yvZhba"
   },
   10: {
     title: "Happy Teddy Day!",
-    message: "Vrushti, my precious Babygirl, just like this cuddly teddy, I want to hold you close and never let go. You're my comfort, my warmth, my safe place, my everything. Let's snuggle through this beautiful life together, hand in hand! 🧸",
+    message: "Vrushti, my cuddly Babygirl 🧸 I want to be your teddy bear forever - always there to hug you, comfort you, and make you smile! You're my soft, warm, cozy everything. Let's cuddle through life together, my precious angel! 🥰💕",
     gif: "H4DjXQXamtTiIuyvnd"
   },
   11: {
     title: "Happy Promise Day!",
-    message: "My Babygirl Vrushti, I promise to love you in sunshine and storms, to cherish every precious moment with you. My heart makes this sacred vow: to be yours completely, to protect your smile, to adore you today, tomorrow, and always. You have my forever! 💫",
+    message: "My dearest Babygirl Vrushti 💫 I pinky promise to love you infinitely, to make you laugh every single day, to protect that beautiful smile, and to be your forever cheerleader! You have my heart completely, my sweet angel. Cross my heart! 💕🤞",
     gif: "Z9OGuQyrfHAE8"
   },
   12: {
     title: "Happy Hug Day!",
-    message: "Vrushti, my Babygirl, in your arms I found my home, my peace, my happiness. Your hugs are my safe haven where all worries disappear. Let me hold you close forever and fill your life with endless love and warmth. You're my forever embrace! 🤗",
+    message: "Vrushti, my precious Babygirl 🤗 Your hugs are my favorite place in the entire world! In your arms, everything feels perfect and warm. I want to squeeze you tight and never ever let go. You're my comfiest, coziest home! 💕✨",
     gif: "3o6nUMRm46ceoDRAd2"
   },
   13: {
     title: "Happy Kiss Day!",
-    message: "My beautiful Babygirl Vrushti, your kiss is pure magic that sets my soul on fire! Every kiss from you feels like the first time, making my heart race. I'm completely addicted to your love, your touch, your everything. Kiss me forever, my love! 💋",
+    message: "My beautiful Babygirl Vrushti 💋 Your kisses are pure magic that make my heart do backflips! Every kiss feels like fireworks and butterflies all at once. I'm totally, completely, hopelessly addicted to you! Kiss me a million times, cutie! 😘💕",
     gif: "MDJ9IbxxvDUQM"
   },
   14: {
     title: "Happy Valentine's Day!",
-    message: "Vrushti, my precious Babygirl, today and every single day, you are my Valentine, my soulmate, my best friend, my greatest love! Thank you for making my life the most beautiful love story ever written. I love you more than words can express, endlessly and completely! ❤️",
+    message: "Vrushti, my forever Babygirl ❤️ You're my soulmate, my best friend, my cutest love! Every day with you is Valentine's Day! Thank you for filling my life with giggles, cuddles, and endless love. You're my happily ever after, my everything! I love you to the moon and back infinity times! 💕🌟✨",
     gif: "11StaZ9Lj74oCY"
   }
 };
@@ -418,27 +419,36 @@ for (let i = 0; i < 10; i++) {
   document.body.appendChild(petal);
 }
 
-// Flower SVG template
-const flowerSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(0 50 50)"/>
-  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(72 50 50)"/>
-  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(144 50 50)"/>
-  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(216 50 50)"/>
-  <ellipse cx="50" cy="30" rx="12" ry="20" fill="#ffeb3b" transform="rotate(288 50 50)"/>
-  <circle cx="50" cy="50" r="8" fill="#ffa500"/>
-  <line x1="50" y1="50" x2="50" y2="90" stroke="#228b22" stroke-width="3"/>
-  <ellipse cx="40" cy="70" rx="8" ry="5" fill="#228b22" transform="rotate(-30 40 70)"/>
-  <ellipse cx="60" cy="75" rx="8" ry="5" fill="#228b22" transform="rotate(30 60 75)"/>
+// Buttercup Flower SVG - matching the uploaded image exactly!
+const flowerSVG = `<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stem -->
+  <path d="M 50 60 Q 48 80 47 100 Q 46 120 45 140" stroke="#2d5016" stroke-width="3" fill="none"/>
+  
+  <!-- Leaves -->
+  <ellipse cx="42" cy="90" rx="12" ry="6" fill="#3a7c1f" transform="rotate(-40 42 90)"/>
+  <ellipse cx="48" cy="105" rx="13" ry="7" fill="#3a7c1f" transform="rotate(35 48 105)"/>
+  <ellipse cx="44" cy="120" rx="11" ry="6" fill="#3a7c1f" transform="rotate(-30 44 120)"/>
+  
+  <!-- Flower petals (5 petals in buttercup style) -->
+  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(0 50 50)"/>
+  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(72 50 50)"/>
+  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(144 50 50)"/>
+  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(216 50 50)"/>
+  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(288 50 50)"/>
+  
+  <!-- Flower center (orange) -->
+  <circle cx="50" cy="50" r="10" fill="#ff6b35"/>
+  <circle cx="50" cy="50" r="7" fill="#ff8c42"/>
 </svg>`;
 
-// Click explosion effect
+// Click explosion effect - Beautiful buttercup flowers!
 document.addEventListener('click', (e) => {
   const container = document.createElement('div');
   container.className = 'flower-explosion';
   container.style.left = e.clientX + 'px';
   container.style.top = e.clientY + 'px';
   
-  const numFlowers = Math.floor(Math.random() * 6) + 5;
+  const numFlowers = Math.floor(Math.random() * 6) + 5; // 5-10 flowers
   
   for (let i = 0; i < numFlowers; i++) {
     const flower = document.createElement('div');
@@ -446,7 +456,7 @@ document.addEventListener('click', (e) => {
     flower.innerHTML = flowerSVG;
     
     const angle = (Math.PI * 2 * i) / numFlowers;
-    const distance = Math.random() * 100 + 50;
+    const distance = Math.random() * 150 + 80;
     const tx = Math.cos(angle) * distance;
     const ty = Math.sin(angle) * distance;
     
@@ -526,27 +536,27 @@ if (dayToShow === 14) {
   });
   
   yesBtn.addEventListener('click', () => {
-    // Confetti explosion
-    for (let i = 0; i < 100; i++) {
+    // Massive confetti explosion!
+    for (let i = 0; i < 150; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
       confetti.style.left = Math.random() * 100 + '%';
       confetti.style.top = '-10px';
-      confetti.style.background = ['#ff69b4', '#ff1493', '#ff6b9d', '#ffa07a', '#ffb6c1'][Math.floor(Math.random() * 5)];
+      confetti.style.background = ['#ff69b4', '#ff1493', '#ff6b9d', '#ffa07a', '#ffb6c1', '#f4e04d', '#ff6b35'][Math.floor(Math.random() * 7)];
       confetti.style.animationDelay = Math.random() * 0.5 + 's';
       document.body.appendChild(confetti);
       
       setTimeout(() => confetti.remove(), 3500);
     }
     
-    modal.querySelector('h2').textContent = 'Yay! Forever yours, my Babygirl! 😻';
-    modal.querySelector('.modal-subtitle').textContent = 'I love you endlessly, Vrushti! 💕';
+    modal.querySelector('h2').textContent = 'Yay! You said YES! 😻💕';
+    modal.querySelector('.modal-subtitle').textContent = 'Forever yours, my precious Babygirl Vrushti! ✨💖';
     yesBtn.style.display = 'none';
     
     setTimeout(() => {
       modal.classList.remove('active');
       overlay.classList.remove('active');
-    }, 3000);
+    }, 4000);
   });
 }
 </script>
