@@ -16,7 +16,8 @@
   }
   .stars {
     position:absolute;
-    width:100%;height:100%;
+    width:2px;height:2px;
+    background:transparent;
     box-shadow:
       2vw 10vh #fff, 20vw 30vh #fff, 40vw 80vh #fff,
       60vw 50vh #fff, 80vw 20vh #fff, 90vw 70vh #fff;
@@ -98,12 +99,6 @@
     border-radius:50%;
     box-shadow:0 0 8px #fff59d;
     opacity:0.8;
-    animation:fly 8s linear infinite;
-  }
-  @keyframes fly {
-    0% {transform:translate(0,0);}
-    50% {transform:translate(40px,-60px);}
-    100% {transform:translate(-20px,40px);}
   }
 </style>
 </head>
@@ -132,55 +127,47 @@ const catGifs={
   "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"]
 };
 
-/* Longer, cuter notes */
+/* Longer, cute notes */
 const wishes={
  "2-7":`Happy Flower Day ${gfName}! 🌼
 Like these glowing blossoms, your smile lights up the night sky.
 Every petal reminds me of the warmth you bring,
-and every glow is a promise of endless joy together.
-You are my sunshine even in the midnight dark.`,
+and every glow is a promise of endless joy together.`,
  "2-8":`Propose Day 💍
 ${gfName}, under the stars I ask again:
 Will you let me be the one who walks beside you,
 shares laughter under firefly light,
-and builds a thousand cozy memories with you?
-My heart whispers yes every time I see you.`,
+and builds a thousand cozy memories with you?`,
  "2-9":`Chocolate Day 🍫
 Sweet ${gfName}, you are sweeter than midnight cocoa,
 and softer than the creamiest truffle.
 Every moment with you is a treat,
-and I want to savor this sweetness for a lifetime.
-You are my sweetest indulgence forever.`,
+and I want to savor this sweetness for a lifetime.`,
  "2-10":`Teddy Day 🧸
 Cuddly ${gfName}, imagine a teddy that carries all my hugs,
 whispers silly stories, and keeps you warm at night.
 That teddy is me, always ready to comfort you
-and make you smile under the glowing stars.
-You are my favorite cuddle in the universe.`,
+and make you smile under the glowing stars.`,
  "2-11":`Promise Day 🤝
 Beloved ${gfName}, I promise to listen when you need to talk,
 to cheer when you shine, and to stand steady when storms arrive.
 This promise is not just words, but my heart’s vow —
-forever and always, glowing like fireflies in the dark.
-I promise to love you endlessly.`,
+forever and always, glowing like fireflies in the dark.`,
  "2-12":`Hug Day 🤗
 Sweetheart ${gfName}, here is a hug that travels through the night:
 warm, gentle, and endless.
 Wrap it around you whenever you miss me,
-and know that I am holding you close in every quiet moment.
-My hugs will always find you, even in dreams.`,
+and know that I am holding you close in every quiet moment.`,
  "2-13":`Kiss Day 😘
 Darling ${gfName}, a tiny kiss for your forehead,
 a playful peck for your cheek,
 and a promise of a thousand more.
-Let this kiss be a spark that lights up your sweetest dreams tonight.
-Every kiss is a poem written on your heart.`,
+Let this kiss be a spark that lights up your sweetest dreams tonight.`,
  "2-14":`Happy Valentine's Day ❤️
 My dearest ${gfName}, today and every day I celebrate you.
 You make my heart skip, my laughter brighter, and my world magical.
 Will you be my forever Valentine, my favorite hello,
-and my hardest goodbye under the midnight sky?
-You are my forever love, my glowing star.`
+and my hardest goodbye under the midnight sky?`
 };
 
 function mdKey(d){return (d.getMonth()+1)+"-"+d.getDate();}
@@ -199,14 +186,20 @@ const gifRow=document.getElementById("gifRow");
 
 /* Flower grow animation on click */
 document.addEventListener("click",e=>{
-   f.appendChild(stem);
+  const f=document.createElement("div");
+  f.className="flower";
+  f.style.left=e.clientX+"px";
+  f.style.top=e.clientY+"px";
+  const stem=document.createElement("div");
+  stem.className="stem";
+  const bloom=document.createElement("div");
+  bloom.className="bloom";
+  f.appendChild(stem);
   f.appendChild(bloom);
   document.body.appendChild(f);
 
-  // Animate stem growth
   stem.animate([{height:"0px"},{height:"60px"}],{duration:600,fill:"forwards"});
 
-  // Animate bloom with petals
   setTimeout(()=>{
     bloom.style.width="40px";
     bloom.style.height="40px";
@@ -228,7 +221,7 @@ document.addEventListener("click",e=>{
       petal.animate([
         {opacity:0, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(0.5)`},
         {opacity:1, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(1)`}
-      ], {duration:600,fill:"forwards"});
+      ], {duration:600, fill:"forwards"});
     }
 
     // Add fireflies drifting around the bloom
