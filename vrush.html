@@ -180,14 +180,124 @@ h1 {
 
 .flower-particle {
   position: absolute;
-  width: 50px;
-  height: 50px;
   animation: explode 3s ease-out forwards;
 }
 
+/* Buttercup flower styles - matching the reference image */
+.flower {
+  position: relative;
+  width: 60px;
+  height: 120px;
+}
+
+.flower__head {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  animation: bloom 0.5s ease-out;
+}
+
+@keyframes bloom {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.flower__petal {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #f4e04d 0%, #e8d74a 100%);
+  border-radius: 50% 0;
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flower__petal:nth-child(1) {
+  top: -8px;
+  left: 18px;
+  transform: rotate(-45deg);
+}
+
+.flower__petal:nth-child(2) {
+  top: 5px;
+  right: -8px;
+  transform: rotate(25deg);
+}
+
+.flower__petal:nth-child(3) {
+  bottom: 5px;
+  right: 2px;
+  transform: rotate(95deg);
+}
+
+.flower__petal:nth-child(4) {
+  bottom: 5px;
+  left: 2px;
+  transform: rotate(155deg);
+}
+
+.flower__petal:nth-child(5) {
+  top: 5px;
+  left: -8px;
+  transform: rotate(-105deg);
+}
+
+.flower__center {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ff8c42 0%, #ff6b35 100%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.flower__stem {
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(to bottom, #3a7c1f 0%, #2d5016 100%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.flower__leaf {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  background: #3a7c1f;
+  border-radius: 0 50% 50% 0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.flower__leaf:nth-child(1) {
+  bottom: 35px;
+  left: -8px;
+  transform: rotate(-30deg);
+}
+
+.flower__leaf:nth-child(2) {
+  bottom: 20px;
+  right: -8px;
+  transform: rotate(30deg) scaleX(-1);
+}
+
 @keyframes explode {
-  0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(1) rotate(720deg); opacity: 0; }
+  0% { 
+    transform: translate(0, 0) scale(0) rotate(0deg); 
+    opacity: 1; 
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rotate)); 
+    opacity: 0; 
+  }
 }
 
 /* Modal */
@@ -419,27 +529,44 @@ for (let i = 0; i < 10; i++) {
   document.body.appendChild(petal);
 }
 
-// Buttercup Flower SVG - matching the uploaded image exactly!
-const flowerSVG = `<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <!-- Stem -->
-  <path d="M 50 60 Q 48 80 47 100 Q 46 120 45 140" stroke="#2d5016" stroke-width="3" fill="none"/>
+// Create buttercup flower matching the reference image
+function createFlower() {
+  const flower = document.createElement('div');
+  flower.className = 'flower';
   
-  <!-- Leaves -->
-  <ellipse cx="42" cy="90" rx="12" ry="6" fill="#3a7c1f" transform="rotate(-40 42 90)"/>
-  <ellipse cx="48" cy="105" rx="13" ry="7" fill="#3a7c1f" transform="rotate(35 48 105)"/>
-  <ellipse cx="44" cy="120" rx="11" ry="6" fill="#3a7c1f" transform="rotate(-30 44 120)"/>
+  const head = document.createElement('div');
+  head.className = 'flower__head';
   
-  <!-- Flower petals (5 petals in buttercup style) -->
-  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(0 50 50)"/>
-  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(72 50 50)"/>
-  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(144 50 50)"/>
-  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(216 50 50)"/>
-  <ellipse cx="50" cy="25" rx="14" ry="18" fill="#f4e04d" transform="rotate(288 50 50)"/>
+  // Create 5 petals
+  for (let i = 0; i < 5; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'flower__petal';
+    head.appendChild(petal);
+  }
   
-  <!-- Flower center (orange) -->
-  <circle cx="50" cy="50" r="10" fill="#ff6b35"/>
-  <circle cx="50" cy="50" r="7" fill="#ff8c42"/>
-</svg>`;
+  // Create center
+  const center = document.createElement('div');
+  center.className = 'flower__center';
+  head.appendChild(center);
+  
+  // Create stem
+  const stem = document.createElement('div');
+  stem.className = 'flower__stem';
+  
+  // Create leaves
+  const leaf1 = document.createElement('div');
+  leaf1.className = 'flower__leaf';
+  stem.appendChild(leaf1);
+  
+  const leaf2 = document.createElement('div');
+  leaf2.className = 'flower__leaf';
+  stem.appendChild(leaf2);
+  
+  flower.appendChild(head);
+  flower.appendChild(stem);
+  
+  return flower;
+}
 
 // Click explosion effect - Beautiful buttercup flowers!
 document.addEventListener('click', (e) => {
@@ -451,19 +578,23 @@ document.addEventListener('click', (e) => {
   const numFlowers = Math.floor(Math.random() * 6) + 5; // 5-10 flowers
   
   for (let i = 0; i < numFlowers; i++) {
-    const flower = document.createElement('div');
-    flower.className = 'flower-particle';
-    flower.innerHTML = flowerSVG;
+    const flowerContainer = document.createElement('div');
+    flowerContainer.className = 'flower-particle';
+    
+    const flower = createFlower();
+    flowerContainer.appendChild(flower);
     
     const angle = (Math.PI * 2 * i) / numFlowers;
     const distance = Math.random() * 150 + 80;
     const tx = Math.cos(angle) * distance;
     const ty = Math.sin(angle) * distance;
+    const rotate = Math.random() * 360;
     
-    flower.style.setProperty('--tx', tx + 'px');
-    flower.style.setProperty('--ty', ty + 'px');
+    flowerContainer.style.setProperty('--tx', tx + 'px');
+    flowerContainer.style.setProperty('--ty', ty + 'px');
+    flowerContainer.style.setProperty('--rotate', rotate + 'deg');
     
-    container.appendChild(flower);
+    container.appendChild(flowerContainer);
   }
   
   document.body.appendChild(container);
