@@ -20,13 +20,14 @@
     border-radius:20px;
     box-shadow:0 10px 40px rgba(255,111,163,0.25);
     padding:24px;
+    text-align:center;
   }
   h1 {font-family:"Pacifico";color:#ff6fa3;margin:0;}
-  .dayLabel {color:#ff2d6f;font-weight:bold;margin-bottom:8px;}
-  .wishText {font-size:18px;line-height:1.5;}
-  .gifRow {display:flex;justify-content:center;gap:12px;margin-top:16px;}
+  .dayLabel {color:#ff2d6f;font-weight:bold;margin:12px 0;}
+  .wishText {font-size:18px;line-height:1.6;padding:0 20px;white-space:pre-line;}
+  .gifRow {display:flex;justify-content:center;gap:12px;margin-top:16px;flex-wrap:wrap;}
   .gifRow img {
-    width:160px;height:auto;border-radius:16px;
+    width:200px;height:auto;border-radius:16px;
     box-shadow:0 8px 20px rgba(0,0,0,0.15);
     animation:float 6s ease-in-out infinite;
   }
@@ -49,14 +50,15 @@
     border-radius:3px;
     transform:translateX(-50%);
   }
-  .bloom {
+  .rose {
     position:absolute;
     bottom:100%;
     left:50%;
     width:0;height:0;
     border-radius:50%;
-    background:#ff6fa3;
+    background:#ff2d6f;
     transform:translateX(-50%) scale(0);
+    box-shadow:0 0 12px rgba(255,45,111,0.4);
   }
 </style>
 </head>
@@ -84,16 +86,44 @@ const catGifs={
   "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"] // Valentine
 };
 
-/* Wishes */
+/* Longer, cuter notes */
 const wishes={
- "2-7":`Happy Rose Day ${gfName}! 🌹 Every smile of yours is a rose blooming in my heart.`,
- "2-8":`Propose Day ${gfName} 💍 — I want to hold your hand forever and never let go.`,
- "2-9":`Chocolate Day 🍫 — ${gfName}, you are sweeter than all the chocolates in the world.`,
- "2-10":`Teddy Day 🧸 — ${gfName}, may my hugs be your teddy forever.`,
- "2-11":`Promise Day 🤝 — ${gfName}, I promise to love and support you always.`,
- "2-12":`Hug Day 🤗 — Sending you the warmest hug across the screen, ${gfName}.`,
- "2-13":`Kiss Day 😘 — A thousand kisses for you, ${gfName}, today and forever.`,
- "2-14":`Happy Valentine's Day ❤️ — ${gfName}, you are my forever Valentine.`
+ "2-7":`Happy Rose Day ${gfName}! 🌹
+Every smile of yours is like a rose blooming in my heart.
+Just as roses spread fragrance, you spread joy and love in my life.
+I wish to give you endless roses, endless smiles, and endless love.`,
+ "2-8":`Propose Day 💍
+Sweet ${gfName}, today I want to say it again and again:
+I want to walk beside you through every season,
+to laugh with you in sunshine, and hold you close in storms.
+Will you let me be your forever?`,
+ "2-9":`Chocolate Day 🍫
+Dearest ${gfName}, you are sweeter than the richest chocolate,
+and softer than the creamiest truffle.
+Every moment with you is a treat,
+and I want to savor this sweetness for a lifetime.`,
+ "2-10":`Teddy Day 🧸
+My cuddly ${gfName}, imagine a teddy that carries all my hugs,
+whispers silly stories, and keeps you warm at night.
+That teddy is me, always ready to comfort you and make you smile.`,
+ "2-11":`Promise Day 🤝
+Beloved ${gfName}, I promise to listen when you need to talk,
+to cheer when you shine, and to stand steady when storms arrive.
+This promise is not just words, but my heart’s vow — forever and always.`,
+ "2-12":`Hug Day 🤗
+Sweetheart ${gfName}, here is a hug that travels through the screen:
+warm, gentle, and endless.
+Wrap it around you whenever you miss me,
+and know that I am holding you close in every quiet moment.`,
+ "2-13":`Kiss Day 😘
+Darling ${gfName}, a tiny kiss for your forehead,
+a playful peck for your cheek,
+and a promise of a thousand more.
+Let this kiss be a spark that lights up your sweetest dreams tonight.`,
+ "2-14":`Happy Valentine's Day ❤️
+My dearest ${gfName}, today and every day I celebrate you.
+You make my heart skip, my laughter brighter, and my world magical.
+Will you be my forever Valentine, my favorite hello, and my hardest goodbye?`
 };
 
 function mdKey(d){return (d.getMonth()+1)+"-"+d.getDate();}
@@ -104,6 +134,39 @@ document.getElementById("wishText").textContent=wishes[key]||`Hello ${gfName}, e
 
 /* Show GIFs */
 const gifRow=document.getElementById("gifRow");
+(catGifs[key]||catGifs["2-7"]).forEach(url=>{
+  const img=document.createElement("img");
+  img.src=url;img.alt="cat couple gif";
+  gifRow.appendChild(img);
+});
+
+/* Flower grow animation on click (rose) */
+document.addEventListener("click",e=>{
+  const f=document.createElement("div");
+  f.className="flower";
+  f.style.left=e.clientX+"px";
+  f.style.top=e.clientY+"px";
+  const stem=document.createElement("div");
+  stem.className="stem";
+  const rose=document.createElement("div");
+  rose.className="rose";
+  f.appendChild(stem);
+  f.appendChild(rose);
+  document.body.appendChild(f);
+  // Animate stem growth
+  stem.animate([{height:"0px"},{height:"60px"}],{duration:600,fill:"forwards"});
+  // Animate rose bloom
+  setTimeout(()=>{
+    rose.animate([
+      {width:"0px",height:"0px",transform:"translateX(-50%) scale(0)"},
+      {width:"40px",height:"40px",transform:"translateX(-50%) scale(1)"}
+    ],{duration:600,fill:"forwards"});
+  },600);
+  setTimeout(()=>f.remove(),2500);
+});
+</script>
+</body>
+</html>
 (catGifs[key]||catGifs["2-7"]).forEach(url=>{
   const img=document.createElement("img");
   img.src=url;img.alt="cat couple gif";
