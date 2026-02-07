@@ -1,169 +1,139 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Valentine Week for Vrushti — GIF Edition</title>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Valentine Week for Vrushti</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 <style>
-  /* (same CSS as before, already working fine) */
+  body {
+    margin:0;
+    font-family:"Comfortaa",sans-serif;
+    background:linear-gradient(180deg,#fff0f6,#ffe6f0);
+    color:#4b2b3a;
+    overflow-x:hidden;
+  }
+  .card {
+    max-width:900px;
+    margin:40px auto;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(255,111,163,0.25);
+    padding:24px;
+  }
+  h1 {font-family:"Pacifico";color:#ff6fa3;margin:0;}
+  .dayLabel {color:#ff2d6f;font-weight:bold;margin-bottom:8px;}
+  .wishText {font-size:18px;line-height:1.5;}
+  .gifRow {display:flex;justify-content:center;gap:12px;margin-top:16px;}
+  .gifRow img {
+    width:160px;height:auto;border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
+  }
+  .flower {
+    position:absolute;
+    width:60px;height:120px;
+    pointer-events:none;
+    transform-origin:bottom center;
+  }
+  .stem {
+    position:absolute;
+    bottom:0;left:50%;
+    width:6px;height:0;
+    background:#3a9d23;
+    border-radius:3px;
+    transform:translateX(-50%);
+  }
+  .bloom {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    width:0;height:0;
+    border-radius:50%;
+    background:#ff6fa3;
+    transform:translateX(-50%) scale(0);
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card" id="card">
-    <header>
-      <div class="logo">❤</div>
-      <div>
-        <h1 id="title">Valentine Week</h1>
-        <div class="subtitle">A little surprise for <strong id="gfNameDisplay">Vrushti</strong></div>
-      </div>
-    </header>
-
-    <div class="main">
-      <div class="left">
-        <div class="wishBox">
-          <div class="dayLabel" id="dayLabel">Day</div>
-          <div class="wishText" id="wishText">Loading…</div>
-          <div class="actions">
-            <button class="btn" id="yesBtn">Yes</button>
-            <button class="btn noBtn hidden" id="noBtn">No</button>
-            <button class="btn secondary" id="surpriseBtn">Surprise</button>
-          </div>
-          <div class="meta" id="metaText">Tap anywhere for a flower</div>
-        </div>
-        <div class="smallNote">Open this page each day for a new note and animation.</div>
-      </div>
-
-      <div class="right">
-        <div class="heartStage" id="heartStage">
-          <div class="floatingHearts" id="floatingHearts"></div>
-          <div id="centerVisual">
-            <div id="centerMessage" class="typewriter"></div>
-            <div class="gifRow" id="gifRow"></div>
-          </div>
-        </div>
-        <div class="smallNote">Made with hugs and giggles 💕</div>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <h1>Valentine Week for <span id="gfName">Vrushti</span></h1>
+  <div class="dayLabel" id="dayLabel"></div>
+  <div class="wishText" id="wishText"></div>
+  <div class="gifRow" id="gifRow"></div>
 </div>
 
-<div id="modalRoot" style="display:none"></div>
-
 <script>
-const gfName = 'Vrushti';
-document.getElementById('gfNameDisplay').textContent = gfName;
+const gfName="Vrushti";
+document.getElementById("gfName").textContent=gfName;
 
-/* Curated GIFs */
-const catGifs = [
-  'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
-  'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif',
-  'https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif'
-];
+/* Cartoon cat couple GIFs for each day */
+const catGifs={
+  "2-7":["https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"], // Rose Day
+  "2-8":["https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"], // Propose
+  "2-9":["https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"], // Chocolate
+  "2-10":["https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"], // Teddy
+  "2-11":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"], // Promise
+  "2-12":["https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"], // Hug
+  "2-13":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"], // Kiss
+  "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"] // Valentine
+};
 
-/* Wishes object (same as before) */
-const wishes = { /* ... same as your previous version ... */ };
+/* Wishes */
+const wishes={
+ "2-7":`Happy Rose Day ${gfName}! 🌹 Every smile of yours is a rose blooming in my heart.`,
+ "2-8":`Propose Day ${gfName} 💍 — I want to hold your hand forever and never let go.`,
+ "2-9":`Chocolate Day 🍫 — ${gfName}, you are sweeter than all the chocolates in the world.`,
+ "2-10":`Teddy Day 🧸 — ${gfName}, may my hugs be your teddy forever.`,
+ "2-11":`Promise Day 🤝 — ${gfName}, I promise to love and support you always.`,
+ "2-12":`Hug Day 🤗 — Sending you the warmest hug across the screen, ${gfName}.`,
+ "2-13":`Kiss Day 😘 — A thousand kisses for you, ${gfName}, today and forever.`,
+ "2-14":`Happy Valentine's Day ❤️ — ${gfName}, you are my forever Valentine.`
+};
 
-/* Utility */
-function mdKey(d){ return (d.getMonth()+1) + '-' + d.getDate(); }
-const dayLabel = document.getElementById('dayLabel');
-const wishText = document.getElementById('wishText');
-const title = document.getElementById('title');
-const centerMessage = document.getElementById('centerMessage');
-const gifRow = document.getElementById('gifRow');
-const floatingHearts = document.getElementById('floatingHearts');
-const noBtn = document.getElementById('noBtn');
-const yesBtn = document.getElementById('yesBtn');
-const surpriseBtn = document.getElementById('surpriseBtn');
-const card = document.getElementById('card');
-const modalRoot = document.getElementById('modalRoot');
+function mdKey(d){return (d.getMonth()+1)+"-"+d.getDate();}
+const today=new Date();
+const key=mdKey(today);
+document.getElementById("dayLabel").textContent=wishes[key]?wishes[key].split(" ")[0]+" Day":"Sweet Day";
+document.getElementById("wishText").textContent=wishes[key]||`Hello ${gfName}, every day with you is special 💖`;
 
-const today = new Date();
-const key = mdKey(today);
-const dayData = wishes[key] || null;
-
-if(dayData){
-  dayLabel.textContent = dayData.day;
-  wishText.textContent = dayData.text;
-  title.textContent = `${dayData.day} for ${gfName}`;
-  document.documentElement.style.setProperty('--accent', dayData.style.accent);
-  document.documentElement.style.setProperty('--bg', dayData.style.bg);
-  runAnimation(dayData.animation);
-  if(key === '2-14'){ showNoButtonForFeb14(); } else { hideNoButton(); }
-} else {
-  dayLabel.textContent = 'Sweet Day';
-  wishText.textContent = `Hello ${gfName}, every day with you is special 💖`;
-  runAnimation('floatHearts');
-  hideNoButton();
-}
-
-/* NO button logic */
-function hideNoButton(){ noBtn.classList.add('hidden'); }
-function showNoButtonForFeb14(){
-  noBtn.classList.remove('hidden');
-  enableMovingNo();
-}
-
-/* Buttons */
-yesBtn.onclick = ()=> showPopup(`Yay! ${gfName} is loved 💕`);
-surpriseBtn.onclick = ()=> openSurpriseModal();
-
-/* Popup */
-function showPopup(msg){
-  const p = document.createElement('div');
-  p.textContent = msg;
-  Object.assign(p.style,{
-    position:'fixed',left:'50%',top:'14%',transform:'translateX(-50%)',
-    background:'white',padding:'12px 18px',borderRadius:'12px',
-    boxShadow:'0 8px 30px rgba(0,0,0,0.12)',zIndex:9999
-  });
-  document.body.appendChild(p);
-  setTimeout(()=>p.remove(),2200);
-}
-
-/* Animations (same as before, cleaned) */
-function runAnimation(name){ /* ... same as before ... */ }
-
-/* Flower click */
-document.addEventListener('click', e=>{
-  if(e.target===noBtn) return;
-  spawnFlower(e.clientX,e.clientY);
+/* Show GIFs */
+const gifRow=document.getElementById("gifRow");
+(catGifs[key]||catGifs["2-7"]).forEach(url=>{
+  const img=document.createElement("img");
+  img.src=url;img.alt="cat couple gif";
+  gifRow.appendChild(img);
 });
 
-/* NO button evasive */
-function enableMovingNo(){
-  noBtn.onclick = e=>{ e.preventDefault(); showPopup('No is not allowed today 💘'); };
-  document.addEventListener('mousemove', e=>{
-    const nb = noBtn.getBoundingClientRect();
-    const dist = Math.hypot(nb.left+nb.width/2 - e.clientX, nb.top+nb.height/2 - e.clientY);
-    if(dist<120){
-      noBtn.style.position='absolute';
-      noBtn.style.left = Math.random()*window.innerWidth+'px';
-      noBtn.style.top = Math.random()*window.innerHeight+'px';
-    }
-  });
-}
-
-/* Surprise modal */
-function openSurpriseModal(){
-  modalRoot.innerHTML='';
-  const backdrop=document.createElement('div');
-  backdrop.className='modalBackdrop';
-  const modal=document.createElement('div');
-  modal.className='modal';
-  modal.innerHTML=`<button class="closeBtn">✕</button>
-    <div class="modalContent">
-      <div class="modalLeft"><h3 class="cuteTitle">Surprise for ${gfName}</h3></div>
-      <div class="modalRight"><img id="modalGif" src="${catGifs[0]}" style="width:120px;height:120px"/></div>
-    </div>`;
-  backdrop.appendChild(modal);
-  modalRoot.appendChild(backdrop);
-  modalRoot.style.display='block';
-  modal.querySelector('.closeBtn').onclick=closeModal;
-  backdrop.onclick=e=>{if(e.target===backdrop)closeModal();}
-}
-function closeModal(){ modalRoot.style.display='none'; modalRoot.innerHTML=''; }
+/* Flower grow animation on click */
+document.addEventListener("click",e=>{
+  const f=document.createElement("div");
+  f.className="flower";
+  f.style.left=e.clientX+"px";
+  f.style.top=e.clientY+"px";
+  const stem=document.createElement("div");
+  stem.className="stem";
+  const bloom=document.createElement("div");
+  bloom.className="bloom";
+  f.appendChild(stem);
+  f.appendChild(bloom);
+  document.body.appendChild(f);
+  // Animate stem growth
+  stem.animate([{height:"0px"},{height:"60px"}],{duration:600,fill:"forwards"});
+  // Animate bloom
+  setTimeout(()=>{
+    bloom.animate([
+      {width:"0px",height:"0px",transform:"translateX(-50%) scale(0)"},
+      {width:"40px",height:"40px",transform:"translateX(-50%) scale(1)"}
+    ],{duration:600,fill:"forwards"});
+  },600);
+  setTimeout(()=>f.remove(),2000);
+});
 </script>
 </body>
 </html>
