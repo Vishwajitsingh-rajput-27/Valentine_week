@@ -10,11 +10,22 @@
     margin:0;
     height:100%;
     font-family:"Comfortaa",sans-serif;
-    background:linear-gradient(180deg,#fff0f6,#ffe6f0);
-    color:#4b2b3a;
+    background:radial-gradient(ellipse at bottom,#0d1b2a 0%,#000 100%);
+    color:#fdfdfd;
     overflow:hidden;
   }
+  .stars {
+    position:absolute;
+    width:100%;height:100%;
+    box-shadow:
+      2vw 10vh #fff, 20vw 30vh #fff, 40vw 80vh #fff,
+      60vw 50vh #fff, 80vw 20vh #fff, 90vw 70vh #fff;
+    animation: twinkle 6s infinite alternate;
+  }
+  @keyframes twinkle {from {opacity:0.6;} to {opacity:1;}}
   .card {
+    position:relative;
+    z-index:2;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -24,18 +35,18 @@
     text-align:center;
     padding:20px;
   }
-  h1 {font-family:"Pacifico";color:#ff6fa3;margin:0;font-size:2.2em;}
-  .dayLabel {color:#ff2d6f;font-weight:bold;margin:16px 0;font-size:1.4em;}
+  h1 {font-family:"Pacifico";color:#ffd166;margin:0;font-size:2.2em;}
+  .dayLabel {color:#ff9aa2;font-weight:bold;margin:16px 0;font-size:1.4em;}
   .wishText {
     font-size:1.1em;
     line-height:1.6;
     max-width:800px;
     white-space:pre-line;
     margin:0 auto;
-    background:rgba(255,255,255,0.8);
+    background:rgba(255,255,255,0.1);
     padding:20px;
     border-radius:16px;
-    box-shadow:0 8px 30px rgba(255,111,163,0.25);
+    box-shadow:0 8px 30px rgba(255,255,255,0.25);
   }
   .gifRow {
     display:flex;
@@ -46,14 +57,10 @@
   }
   .gifRow img {
     width:220px;height:auto;border-radius:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
     animation:float 6s ease-in-out infinite;
   }
-  @keyframes float {
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-12px);}
-    100%{transform:translateY(0);}
-  }
+  @keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-12px);}100%{transform:translateY(0);}}
   .flower {
     position:absolute;
     width:60px;height:120px;
@@ -68,7 +75,7 @@
     border-radius:3px;
     transform:translateX(-50%);
   }
-  .rose {
+  .bloom {
     position:absolute;
     bottom:100%;
     left:50%;
@@ -77,16 +84,31 @@
   }
   .petal {
     position:absolute;
-    width:20px;height:30px;
+    width:24px;height:24px;
     border-radius:50%;
-    background:#ff4d8a;
-    box-shadow:0 0 8px rgba(255,45,111,0.4);
+    background:#ffd166;
+    box-shadow:0 0 12px rgba(255,209,102,0.8);
     opacity:0;
     transform-origin:center;
+  }
+  .firefly {
+    position:absolute;
+    width:6px;height:6px;
+    background:#fff59d;
+    border-radius:50%;
+    box-shadow:0 0 8px #fff59d;
+    opacity:0.8;
+    animation:fly 8s linear infinite;
+  }
+  @keyframes fly {
+    0% {transform:translate(0,0);}
+    50% {transform:translate(40px,-60px);}
+    100% {transform:translate(-20px,40px);}
   }
 </style>
 </head>
 <body>
+<div class="stars"></div>
 <div class="card">
   <h1>Valentine Week for <span id="gfName">Vrushti</span></h1>
   <div class="dayLabel" id="dayLabel"></div>
@@ -98,56 +120,67 @@
 const gfName="Vrushti";
 document.getElementById("gfName").textContent=gfName;
 
-/* Cartoon cat couple GIFs per day */
+/* GIFs per day */
 const catGifs={
-  "2-7":["https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"], // Rose Day
-  "2-8":["https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"], // Propose
-  "2-9":["https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"], // Chocolate
-  "2-10":["https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"], // Teddy
-  "2-11":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"], // Promise
-  "2-12":["https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"], // Hug
-  "2-13":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"], // Kiss
-  "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"] // Valentine
+  "2-7":["https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"],
+  "2-8":["https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"],
+  "2-9":["https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"],
+  "2-10":["https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"],
+  "2-11":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"],
+  "2-12":["https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"],
+  "2-13":["https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"],
+  "2-14":["https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"]
 };
 
-/* Longer notes */
+/* Longer, cuter notes */
 const wishes={
- "2-7":`Happy Rose Day ${gfName}! 🌹
-Every smile of yours is like a rose blooming in my heart.
-Just as roses spread fragrance, you spread joy and love in my life.
-I wish to give you endless roses, endless smiles, and endless love.`,
+ "2-7":`Happy Flower Day ${gfName}! 🌼
+Like these glowing blossoms, your smile lights up the night sky.
+Every petal reminds me of the warmth you bring,
+and every glow is a promise of endless joy together.
+You are my sunshine even in the midnight dark.`,
  "2-8":`Propose Day 💍
-Sweet ${gfName}, today I want to say it again and again:
-I want to walk beside you through every season,
-to laugh with you in sunshine, and hold you close in storms.
-Will you let me be your forever?`,
+${gfName}, under the stars I ask again:
+Will you let me be the one who walks beside you,
+shares laughter under firefly light,
+and builds a thousand cozy memories with you?
+My heart whispers yes every time I see you.`,
  "2-9":`Chocolate Day 🍫
-Dearest ${gfName}, you are sweeter than the richest chocolate,
+Sweet ${gfName}, you are sweeter than midnight cocoa,
 and softer than the creamiest truffle.
 Every moment with you is a treat,
-and I want to savor this sweetness for a lifetime.`,
+and I want to savor this sweetness for a lifetime.
+You are my sweetest indulgence forever.`,
  "2-10":`Teddy Day 🧸
-My cuddly ${gfName}, imagine a teddy that carries all my hugs,
+Cuddly ${gfName}, imagine a teddy that carries all my hugs,
 whispers silly stories, and keeps you warm at night.
-That teddy is me, always ready to comfort you and make you smile.`,
+That teddy is me, always ready to comfort you
+and make you smile under the glowing stars.
+You are my favorite cuddle in the universe.`,
  "2-11":`Promise Day 🤝
 Beloved ${gfName}, I promise to listen when you need to talk,
 to cheer when you shine, and to stand steady when storms arrive.
-This promise is not just words, but my heart’s vow — forever and always.`,
+This promise is not just words, but my heart’s vow —
+forever and always, glowing like fireflies in the dark.
+I promise to love you endlessly.`,
  "2-12":`Hug Day 🤗
-Sweetheart ${gfName}, here is a hug that travels through the screen:
+Sweetheart ${gfName}, here is a hug that travels through the night:
 warm, gentle, and endless.
 Wrap it around you whenever you miss me,
-and know that I am holding you close in every quiet moment.`,
+and know that I am holding you close in every quiet moment.
+My hugs will always find you, even in dreams.`,
  "2-13":`Kiss Day 😘
 Darling ${gfName}, a tiny kiss for your forehead,
 a playful peck for your cheek,
 and a promise of a thousand more.
-Let this kiss be a spark that lights up your sweetest dreams tonight.`,
+Let this kiss be a spark that lights up your sweetest dreams tonight.
+Every kiss is a poem written on your heart.`,
  "2-14":`Happy Valentine's Day ❤️
 My dearest ${gfName}, today and every day I celebrate you.
 You make my heart skip, my laughter brighter, and my world magical.
-Will you be my forever Valentine, my favorite hello, and my hardest goodbye?`
+Will you be my forever Valentine, my favorite hello,
+and my hardest goodbye under the midnight sky?
+You are my forever love, my glowing star.`
 };
 
 function mdKey(d){return (d.getMonth()+1)+"-"+d.getDate();}
@@ -164,48 +197,60 @@ const gifRow=document.getElementById("gifRow");
   gifRow.appendChild(img);
 });
 
-/* Flower grow animation on click (rose with petals) */
+/* Flower grow animation on click */
 document.addEventListener("click",e=>{
-  const f=document.createElement("div");
-  f.className="flower";
-  f.style.left=e.clientX+"px";
-  f.style.top=e.clientY+"px";
-  const stem=document.createElement("div");
-  stem.className="stem";
-  const rose=document.createElement("div");
-  rose.className="rose";
-  f.appendChild(stem);
-  f.appendChild(rose);
+   f.appendChild(stem);
+  f.appendChild(bloom);
   document.body.appendChild(f);
 
   // Animate stem growth
   stem.animate([{height:"0px"},{height:"60px"}],{duration:600,fill:"forwards"});
 
-  // Animate rose bloom with petals
+  // Animate bloom with petals
   setTimeout(()=>{
-    rose.style.width="40px";
-    rose.style.height="40px";
-    rose.style.borderRadius="50%";
-    rose.style.background="#ff2d6f";
-    rose.style.transform="translateX(-50%) scale(1)";
-    // Add petals around
+    bloom.style.width="40px";
+    bloom.style.height="40px";
+    bloom.style.borderRadius="50%";
+    bloom.style.background="#ffd166";
+    bloom.style.boxShadow="0 0 15px rgba(255,209,102,0.9)";
+    bloom.style.transform="translateX(-50%) scale(1)";
+
+    // Add petals around bloom
     for(let i=0;i<6;i++){
       const petal=document.createElement("div");
       petal.className="petal";
       petal.style.left="50%";
       petal.style.top="50%";
       petal.style.transform=`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px)`;
-      rose.appendChild(petal);
-            // Animate petals appearing
+      bloom.appendChild(petal);
+
+      // Animate petals appearing
       petal.animate([
         {opacity:0, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(0.5)`},
         {opacity:1, transform:`translate(-50%,-50%) rotate(${i*60}deg) translate(0,-25px) scale(1)`}
       ], {duration:600,fill:"forwards"});
     }
+
+    // Add fireflies drifting around the bloom
+    for(let j=0;j<4;j++){
+      const firefly=document.createElement("div");
+      firefly.className="firefly";
+      firefly.style.left="50%";
+      firefly.style.top="50%";
+      bloom.appendChild(firefly);
+
+      const dx=(Math.random()*80-40);
+      const dy=(Math.random()*80-40);
+      firefly.animate([
+        {opacity:0, transform:`translate(-50%,-50%) scale(0.5)`},
+        {opacity:1, transform:`translate(${dx}px,${dy}px) scale(1)`},
+        {opacity:0, transform:`translate(${dx*1.2}px,${dy*1.2}px) scale(0.8)`}
+      ],{duration:2500+Math.random()*1000,easing:"ease-out"});
+    }
   },600);
 
-  // Remove the flower after a short delay so the page stays tidy
-  setTimeout(()=>f.remove(),3000);
+  // Remove the flower after a short delay
+  setTimeout(()=>f.remove(),4000);
 });
 </script>
 </body>
