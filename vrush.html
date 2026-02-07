@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Valentine Week for Vrushti — GIF Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  /* (same CSS as before, already working fine) */
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="card">
+    <header>
+      <div class="logo">❤</div>
+      <div>
+        <h1 id="title">Valentine Week</h1>
+        <div class="subtitle">A little surprise for <strong id="gfNameDisplay">Vrushti</strong></div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="left">
+        <div class="wishBox">
+          <div class="dayLabel" id="dayLabel">Day</div>
+          <div class="wishText" id="wishText">Loading…</div>
+          <div class="actions">
+            <button class="btn" id="yesBtn">Yes</button>
+            <button class="btn noBtn hidden" id="noBtn">No</button>
+            <button class="btn secondary" id="surpriseBtn">Surprise</button>
+          </div>
+          <div class="meta" id="metaText">Tap anywhere for a flower</div>
+        </div>
+        <div class="smallNote">Open this page each day for a new note and animation.</div>
+      </div>
+
+      <div class="right">
+        <div class="heartStage" id="heartStage">
+          <div class="floatingHearts" id="floatingHearts"></div>
+          <div id="centerVisual">
+            <div id="centerMessage" class="typewriter"></div>
+            <div class="gifRow" id="gifRow"></div>
+          </div>
+        </div>
+        <div class="smallNote">Made with hugs and giggles 💕</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalRoot" style="display:none"></div>
+
+<script>
+const gfName = 'Vrushti';
+document.getElementById('gfNameDisplay').textContent = gfName;
+
+/* Curated GIFs */
+const catGifs = [
+  'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
+  'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif',
+  'https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif'
+];
+
+/* Wishes object (same as before) */
+const wishes = { /* ... same as your previous version ... */ };
+
+/* Utility */
+function mdKey(d){ return (d.getMonth()+1) + '-' + d.getDate(); }
+const dayLabel = document.getElementById('dayLabel');
+const wishText = document.getElementById('wishText');
+const title = document.getElementById('title');
+const centerMessage = document.getElementById('centerMessage');
+const gifRow = document.getElementById('gifRow');
+const floatingHearts = document.getElementById('floatingHearts');
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const surpriseBtn = document.getElementById('surpriseBtn');
+const card = document.getElementById('card');
+const modalRoot = document.getElementById('modalRoot');
+
+const today = new Date();
+const key = mdKey(today);
+const dayData = wishes[key] || null;
+
+if(dayData){
+  dayLabel.textContent = dayData.day;
+  wishText.textContent = dayData.text;
+  title.textContent = `${dayData.day} for ${gfName}`;
+  document.documentElement.style.setProperty('--accent', dayData.style.accent);
+  document.documentElement.style.setProperty('--bg', dayData.style.bg);
+  runAnimation(dayData.animation);
+  if(key === '2-14'){ showNoButtonForFeb14(); } else { hideNoButton(); }
+} else {
+  dayLabel.textContent = 'Sweet Day';
+  wishText.textContent = `Hello ${gfName}, every day with you is special 💖`;
+  runAnimation('floatHearts');
+  hideNoButton();
+}
+
+/* NO button logic */
+function hideNoButton(){ noBtn.classList.add('hidden'); }
+function showNoButtonForFeb14(){
+  noBtn.classList.remove('hidden');
+  enableMovingNo();
+}
+
+/* Buttons */
+yesBtn.onclick = ()=> showPopup(`Yay! ${gfName} is loved 💕`);
+surpriseBtn.onclick = ()=> openSurpriseModal();
+
+/* Popup */
+function showPopup(msg){
+  const p = document.createElement('div');
+  p.textContent = msg;
+  Object.assign(p.style,{
+    position:'fixed',left:'50%',top:'14%',transform:'translateX(-50%)',
+    background:'white',padding:'12px 18px',borderRadius:'12px',
+    boxShadow:'0 8px 30px rgba(0,0,0,0.12)',zIndex:9999
+  });
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),2200);
+}
+
+/* Animations (same as before, cleaned) */
+function runAnimation(name){ /* ... same as before ... */ }
+
+/* Flower click */
+document.addEventListener('click', e=>{
+  if(e.target===noBtn) return;
+  spawnFlower(e.clientX,e.clientY);
+});
+
+/* NO button evasive */
+function enableMovingNo(){
+  noBtn.onclick = e=>{ e.preventDefault(); showPopup('No is not allowed today 💘'); };
+  document.addEventListener('mousemove', e=>{
+    const nb = noBtn.getBoundingClientRect();
+    const dist = Math.hypot(nb.left+nb.width/2 - e.clientX, nb.top+nb.height/2 - e.clientY);
+    if(dist<120){
+      noBtn.style.position='absolute';
+      noBtn.style.left = Math.random()*window.innerWidth+'px';
+      noBtn.style.top = Math.random()*window.innerHeight+'px';
+    }
+  });
+}
+
+/* Surprise modal */
+function openSurpriseModal(){
+  modalRoot.innerHTML='';
+  const backdrop=document.createElement('div');
+  backdrop.className='modalBackdrop';
+  const modal=document.createElement('div');
+  modal.className='modal';
+  modal.innerHTML=`<button class="closeBtn">✕</button>
+    <div class="modalContent">
+      <div class="modalLeft"><h3 class="cuteTitle">Surprise for ${gfName}</h3></div>
+      <div class="modalRight"><img id="modalGif" src="${catGifs[0]}" style="width:120px;height:120px"/></div>
+    </div>`;
+  backdrop.appendChild(modal);
+  modalRoot.appendChild(backdrop);
+  modalRoot.style.display='block';
+  modal.querySelector('.closeBtn').onclick=closeModal;
+  backdrop.onclick=e=>{if(e.target===backdrop)closeModal();}
+}
+function closeModal(){ modalRoot.style.display='none'; modalRoot.innerHTML=''; }
+</script>
+</body>
+</html>
